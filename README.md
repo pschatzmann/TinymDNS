@@ -11,8 +11,8 @@ the network, and resolves other `.local` names. It works with any Arduino
 
 It provides:
 
-- **[`TinymDNS`](https://pschatzmann.github.io/TinymDNS/class_tiny_m_d_n_s.html)**: registers a hostname and IPv4 address, answers queries, announces the address, and resolves `.local` names.
-- **[`MDNSResult`](https://pschatzmann.github.io/TinymDNS/enum_m_d_n_s_result.html)**: the outcome of the most recent `resolve()` call.
+- **[`TinymDNS`](https://pschatzmann.github.io/TinymDNS/class_tinym_d_n_s.html)**: registers a hostname and IPv4 address, answers queries, announces the address, and resolves `.local` names.
+- **[`MDNSResult`](https://pschatzmann.github.io/TinymDNS/TinymDNS_8h.html)**: the outcome of the most recent `resolve()` call (documented in `TinymDNS.h`).
 
 ## Installation
 
