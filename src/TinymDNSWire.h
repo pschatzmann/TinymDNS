@@ -193,12 +193,23 @@ class TinymDNSWire {
     return pos;
   }
 
+  /** @brief true if @p a and @p b are equal under @p mask. */
+  static bool inSubnet(IPAddress a, IPAddress b, IPAddress mask) {
+    for (int i = 0; i < 4; i++)
+      if ((a[i] & mask[i]) != (b[i] & mask[i])) return false;
+    return true;
+  }
+
   /**
    * @brief Parse a response and extract the first A record for @p fqdn.
+   * Records outside the subnet given by @p net and @p mask are skipped.
+   * An all-zero @p mask accepts any address.
    * @return true if a matching A record was found.
    */
   static bool parseAResponse(const uint8_t *msg, size_t len, const char *fqdn,
-                             IPAddress &ip, uint32_t &ttl) {
+                             IPAddress &ip, uint32_t &ttl,
+                             IPAddress net = IPAddress(0, 0, 0, 0),
+                             IPAddress mask = IPAddress(0, 0, 0, 0)) {
     if (len < kHeaderSize) return false;
     if (!(readU16(msg + 2) & 0x8000)) return false;  // not a response
     uint16_t qd = readU16(msg + 4);
@@ -226,9 +237,13 @@ class TinymDNSWire {
       if (pos + rdlen > len) return false;
       if (type == kTypeA && rdlen == 4 && (cls & ~kUnicastFlag) == kClassIN &&
           equalsIgnoreCase(name, fqdn)) {
-        ip = IPAddress(msg[pos], msg[pos + 1], msg[pos + 2], msg[pos + 3]);
-        ttl = recTtl;
-        return true;
+        IPAddress candidate(msg[pos], msg[pos + 1], msg[pos + 2], msg[pos + 3]);
+        bool filtered = mask[0] || mask[1] || mask[2] || mask[3];
+        if (!filtered || inSubnet(candidate, net, mask)) {
+          ip = candidate;
+          ttl = recTtl;
+          return true;
+        }
       }
       pos += rdlen;
     }

@@ -195,6 +195,42 @@ static void testResolve() {
   TinymDNS m3;
   CHECK(!m3.resolve("printer", ip));
   CHECK(m3.lastResult() == MDNSResult::NotConfigured);
+
+  // Subnet filter: an off-subnet answer arrives first and must be skipped.
+  MockUDP udp4;
+  TinymDNS m4;
+  m4.begin(udp4, "esp32", IPAddress(192, 168, 1, 50));
+  m4.setSubnetMask(IPAddress(255, 255, 255, 0));
+  udp4.onSend = [](MockUDP &u, const Packet &p) {
+    bool isQuery = p.data.size() > 2 && (p.data[2] & 0x80) == 0;
+    if (!isQuery) return;
+    uint8_t buf[512];
+    size_t n = TinymDNSWire::buildAResponse(buf, sizeof(buf), 0, "printer.local",
+                                            IPAddress(10, 0, 0, 5), 120, false);
+    u.rx.push_back({IPAddress(10, 0, 0, 5), TINYMDNS_PORT, std::vector<uint8_t>(buf, buf + n)});
+    n = TinymDNSWire::buildAResponse(buf, sizeof(buf), 0, "printer.local",
+                                     IPAddress(192, 168, 1, 77), 120, false);
+    u.rx.push_back({IPAddress(192, 168, 1, 77), TINYMDNS_PORT, std::vector<uint8_t>(buf, buf + n)});
+  };
+  CHECK(m4.resolve("printer", ip));
+  CHECK(ip == IPAddress(192, 168, 1, 77));
+
+  // Subnet filter with no matching answer times out.
+  MockUDP udp5;
+  TinymDNS m5;
+  m5.begin(udp5, "esp32", IPAddress(192, 168, 1, 50));
+  m5.setSubnetMask(IPAddress(255, 255, 255, 0));
+  m5.setTimeout(50);
+  udp5.onSend = [](MockUDP &u, const Packet &p) {
+    bool isQuery = p.data.size() > 2 && (p.data[2] & 0x80) == 0;
+    if (!isQuery) return;
+    uint8_t buf[512];
+    size_t n = TinymDNSWire::buildAResponse(buf, sizeof(buf), 0, "printer.local",
+                                            IPAddress(10, 0, 0, 5), 120, false);
+    u.rx.push_back({IPAddress(10, 0, 0, 5), TINYMDNS_PORT, std::vector<uint8_t>(buf, buf + n)});
+  };
+  CHECK(!m5.resolve("printer", ip));
+  CHECK(m5.lastResult() == MDNSResult::Timeout);
 }
 
 int main() {

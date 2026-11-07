@@ -36,6 +36,9 @@ void setup() {
     Serial.println("mDNS start failed");
   }
 
+  // Accept resolve() answers only from the local subnet
+  mdns.setSubnetMask(WiFi.subnetMask());
+
   // Resolve another device (blocking, uses the same socket)
   IPAddress ip;
   if (mdns.resolve("printer", ip)) {

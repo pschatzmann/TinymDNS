@@ -121,6 +121,13 @@ class TinymDNS {
   /** @brief Timeout applied to each resolve() call, in milliseconds. */
   void setTimeout(uint32_t timeoutMs) { timeoutMs_ = timeoutMs; }
 
+  /**
+   * @brief Restrict resolve() to answers on the local subnet.
+   * An answer is accepted only if it matches the registered address under @p mask.
+   * Use WiFi.subnetMask() (or the equivalent). The default 0.0.0.0 accepts any answer.
+   */
+  void setSubnetMask(IPAddress mask) { subnetMask_ = mask; }
+
   /** @brief Interval between unsolicited announcements in loop(); 0 disables them. */
   void setAnnounceInterval(uint32_t intervalMs) { announceIntervalMs_ = intervalMs; }
 
@@ -223,7 +230,7 @@ class TinymDNS {
       if (queryActive_ && !queryAnswered_) {
         uint32_t ttl = 0;
         IPAddress ip;
-        if (TinymDNSWire::parseAResponse(buf, n, queryName_, ip, ttl)) {
+        if (TinymDNSWire::parseAResponse(buf, n, queryName_, ip, ttl, address_, subnetMask_)) {
           queryAnswered_ = true;
           answerIp_ = ip;
           answerTtl_ = ttl;
@@ -283,6 +290,7 @@ class TinymDNS {
   UDP *udp_ = nullptr;
   char fqdn_[TINYMDNS_NAME_MAX] = {0};
   IPAddress address_;
+  IPAddress subnetMask_;  // 0.0.0.0 = accept answers from any network
   uint32_t ttl_ = TINYMDNS_DEFAULT_TTL;
   uint32_t timeoutMs_ = TINYMDNS_DEFAULT_TIMEOUT_MS;
   uint32_t announceIntervalMs_ = TINYMDNS_DEFAULT_ANNOUNCE_INTERVAL_MS;
