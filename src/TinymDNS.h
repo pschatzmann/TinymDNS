@@ -232,6 +232,33 @@ class TinymDNS {
   /** @brief true while the instance is running. */
   bool isActive() const { return started_; }
 
+  /** @brief Kind of mDNS event reported to the EventCallback. */
+  enum class Event {
+    Query,   ///< A host asked for @c name; @c ip is the asker's address.
+    Announcement,  ///< A host announced/answered an A record (TTL > 0): @c name resolves to @c ip.
+    ReplyReceived, ///< A host replied to our own resolve() query: @c name is at @c ip.
+    ReplySent,     ///< We answered a query for our hostname; @c name is our FQDN, @c ip the asker.
+    Goodbye,       ///< A host withdrew an A record (TTL 0, RFC 6762 section 10.1): @c name left @c ip.
+  };
+
+  /**
+   * @brief Callback for observed mDNS traffic.
+   * @param event Query, Announcement, Goodbye, ReplyReceived or ReplySent.
+   * @param name Fully qualified name (e.g. "esp.local"); valid only during the call.
+   * @param ip Query/ReplySent: the asker's address. Announcement/Goodbye/ReplyReceived: address from the A record.
+   * @param ctx User pointer given to setEventCallback().
+   */
+  using EventCallback = void (*)(Event event, const char *name, IPAddress ip, void *ctx);
+
+  /**
+   * @brief Register an observer for received queries and A-record answers.
+   * The built-in responder and resolver still run. Pass nullptr to remove.
+   */
+  void setEventCallback(EventCallback cb, void *ctx = nullptr) {
+    eventCb_ = cb;
+    eventCtx_ = ctx;
+  }
+
  protected:
   /** Read and handle at most one pending packet. */
   void poll() {
@@ -254,6 +281,7 @@ class TinymDNS {
     uint16_t flags = TinymDNSWire::readU16(buf + 2);
 
     if (flags & 0x8000) {
+      if (eventCb_) notifyAnswers(buf, n);
       // Response: capture the answer to our pending resolve() query.
       if (queryActive_ && !queryAnswered_) {
         uint32_t ttl = 0;
@@ -284,6 +312,7 @@ class TinymDNS {
       pos = next + 4;
 
       if ((cls & ~TinymDNSWire::kUnicastFlag) != TinymDNSWire::kClassIN) continue;
+      if (eventCb_) eventCb_(Event::Query, name, from, eventCtx_);
       if (!TinymDNSWire::equalsIgnoreCase(name, fqdn_)) continue;
       if (type != TinymDNSWire::kTypeA && type != TinymDNSWire::kTypeANY) continue;
       wantsAnswer = true;
@@ -291,6 +320,7 @@ class TinymDNS {
     }
     if (!wantsAnswer) return;
 
+    if (eventCb_) eventCb_(Event::ReplySent, fqdn_, from, eventCtx_);
     if (fromPort != TINYMDNS_PORT) {
       // Legacy unicast query (RFC 6762 section 6.7): reply to sender with same ID.
       sendAnswer(from, fromPort, id, true);
@@ -298,6 +328,39 @@ class TinymDNS {
       sendAnswer(from, TINYMDNS_PORT, 0, false);
     } else {
       sendAnswer(TINYMDNS_MULTICAST_IP, TINYMDNS_PORT, 0, false);
+    }
+  }
+
+  /** Report every IN A record of a response as Announcement (TTL > 0) or Goodbye (TTL 0). */
+  void notifyAnswers(const uint8_t *msg, size_t len) {
+    uint16_t qd = TinymDNSWire::readU16(msg + 4);
+    uint32_t records = (uint32_t)TinymDNSWire::readU16(msg + 6) + TinymDNSWire::readU16(msg + 8) +
+                       TinymDNSWire::readU16(msg + 10);
+    char name[TINYMDNS_NAME_MAX];
+    size_t pos = TinymDNSWire::kHeaderSize;
+    for (uint16_t i = 0; i < qd; i++) {
+      size_t next = TinymDNSWire::decodeName(msg, len, pos, name, sizeof(name));
+      if (!next || next + 4 > len) return;
+      pos = next + 4;
+    }
+    for (uint32_t i = 0; i < records; i++) {
+      size_t next = TinymDNSWire::decodeName(msg, len, pos, name, sizeof(name));
+      if (!next || next + 10 > len) return;
+      pos = next;
+      uint16_t type = TinymDNSWire::readU16(msg + pos);
+      uint16_t cls = TinymDNSWire::readU16(msg + pos + 2);
+      uint32_t recTtl = TinymDNSWire::readU32(msg + pos + 4);
+      uint16_t rdlen = TinymDNSWire::readU16(msg + pos + 8);
+      pos += 10;
+      if (pos + rdlen > len) return;
+      if (type == TinymDNSWire::kTypeA && rdlen == 4 && (cls & ~TinymDNSWire::kUnicastFlag) == TinymDNSWire::kClassIN) {
+        Event ev = !recTtl ? Event::Goodbye : Event::Announcement;
+        if (recTtl && queryActive_ && !queryAnswered_ && TinymDNSWire::equalsIgnoreCase(name, queryName_)) {
+          ev = Event::ReplyReceived;
+        }
+        eventCb_(ev, name, IPAddress(msg[pos], msg[pos + 1], msg[pos + 2], msg[pos + 3]), eventCtx_);
+      }
+      pos += rdlen;
     }
   }
 
@@ -316,6 +379,8 @@ class TinymDNS {
   }
 
   UDP *udp_ = nullptr;
+  EventCallback eventCb_ = nullptr;
+  void *eventCtx_ = nullptr;
   char fqdn_[TINYMDNS_NAME_MAX] = {0};
   IPAddress address_;
   IPAddress subnetMask_;  // 0.0.0.0 = accept answers from any network
