@@ -107,10 +107,10 @@ Collaboration diagram for TinymDNS:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a090b8907b14d0eaf9ebe1ab72768339d" id="r_a090b8907b14d0eaf9ebe1ab72768339d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a090b8907b14d0eaf9ebe1ab72768339d">TinymDNS</a> ()=default</td></tr>
-<tr class="memdesc:a090b8907b14d0eaf9ebe1ab72768339d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an inactive instance; call <a class="el" href="class_tinym_d_n_s.html#a8cf531b61cfcb007e21fe92da88fae43" title="Join the mDNS group, register the hostname and announce it.">begin()</a> before use.  <br /></td></tr>
+<tr class="memdesc:a090b8907b14d0eaf9ebe1ab72768339d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an inactive instance; call <a class="el" href="class_tinym_d_n_s.html#a8cf531b61cfcb007e21fe92da88fae43" title="Join the mDNS group, register the hostname and announce it. If the group cannot be joined,...">begin()</a> before use.  <br /></td></tr>
 <tr class="separator:a090b8907b14d0eaf9ebe1ab72768339d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a562dd46974f44bef44c920628cd0559c" id="r_a562dd46974f44bef44c920628cd0559c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a562dd46974f44bef44c920628cd0559c">TinymDNS</a> (UDP &amp;udp)</td></tr>
-<tr class="memdesc:a562dd46974f44bef44c920628cd0559c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bind to a UDP implementation without starting. Call <a class="el" href="class_tinym_d_n_s.html#a8cf531b61cfcb007e21fe92da88fae43" title="Join the mDNS group, register the hostname and announce it.">begin()</a> to start.  <br /></td></tr>
+<tr class="memdesc:a562dd46974f44bef44c920628cd0559c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bind to a UDP implementation without starting. Call <a class="el" href="class_tinym_d_n_s.html#a8cf531b61cfcb007e21fe92da88fae43" title="Join the mDNS group, register the hostname and announce it. If the group cannot be joined,...">begin()</a> to start.  <br /></td></tr>
 <tr class="separator:a562dd46974f44bef44c920628cd0559c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea66d815ef36e268997abe5e0ac35de3" id="r_aea66d815ef36e268997abe5e0ac35de3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#aea66d815ef36e268997abe5e0ac35de3">TinymDNS</a> (UDP &amp;udp, const char *hostname, IPAddress address, uint32_t ttl=120)</td></tr>
 <tr class="memdesc:aea66d815ef36e268997abe5e0ac35de3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct and start in one step.  <br /></td></tr>
@@ -119,7 +119,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a32002be7db7b50b92021ee17837ac553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send an unsolicited multicast announcement of the registered name.  <br /></td></tr>
 <tr class="separator:a32002be7db7b50b92021ee17837ac553"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cf531b61cfcb007e21fe92da88fae43" id="r_a8cf531b61cfcb007e21fe92da88fae43"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a8cf531b61cfcb007e21fe92da88fae43">begin</a> (UDP &amp;udp, const char *hostname, IPAddress address, uint32_t ttl=120)</td></tr>
-<tr class="memdesc:a8cf531b61cfcb007e21fe92da88fae43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Join the mDNS group, register the hostname and announce it.  <br /></td></tr>
+<tr class="memdesc:a8cf531b61cfcb007e21fe92da88fae43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Join the mDNS group, register the hostname and announce it. If the group cannot be joined, falls back to a plain UDP socket on port 5353 (see <a class="el" href="class_tinym_d_n_s.html#a3036cb10c4e474bd0161f48220f01eef" title="true if the multicast group was joined; false if the plain-UDP fallback is in use.">isMulticast()</a>).  <br /></td></tr>
 <tr class="separator:a8cf531b61cfcb007e21fe92da88fae43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf81d3fdaf258088d7692fa70cece087" id="r_aaf81d3fdaf258088d7692fa70cece087"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#aaf81d3fdaf258088d7692fa70cece087">end</a> ()</td></tr>
 <tr class="memdesc:aaf81d3fdaf258088d7692fa70cece087"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the instance and close the socket.  <br /></td></tr>
@@ -133,6 +133,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a136c501b466f2017a7ce93380f23bc19" id="r_a136c501b466f2017a7ce93380f23bc19"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a136c501b466f2017a7ce93380f23bc19">isCaptive</a> () const</td></tr>
 <tr class="memdesc:a136c501b466f2017a7ce93380f23bc19"><td class="mdescLeft">&#160;</td><td class="mdescRight">true while captive mode is active.  <br /></td></tr>
 <tr class="separator:a136c501b466f2017a7ce93380f23bc19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3036cb10c4e474bd0161f48220f01eef" id="r_a3036cb10c4e474bd0161f48220f01eef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a3036cb10c4e474bd0161f48220f01eef">isMulticast</a> () const</td></tr>
+<tr class="memdesc:a3036cb10c4e474bd0161f48220f01eef"><td class="mdescLeft">&#160;</td><td class="mdescRight">true if the multicast group was joined; false if the plain-UDP fallback is in use.  <br /></td></tr>
+<tr class="separator:a3036cb10c4e474bd0161f48220f01eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a251a48b23bd7022b24846929650da5c2" id="r_a251a48b23bd7022b24846929650da5c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_tinym_d_n_s_8h.html#a396c21a2ef041a3f45a66f22f3b54c09">MDNSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a251a48b23bd7022b24846929650da5c2">lastResult</a> () const</td></tr>
 <tr class="memdesc:a251a48b23bd7022b24846929650da5c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outcome of the most recent <a class="el" href="class_tinym_d_n_s.html#a2d6fee4daf3fb8af66e65a8631ad17bc" title="Resolve a &quot;.local&quot; hostname (a bare label gets &quot;.local&quot; appended) to IPv4. Blocks up to the configure...">resolve()</a> call.  <br /></td></tr>
 <tr class="separator:a251a48b23bd7022b24846929650da5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,6 +195,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a0c95d897a71d0044a10ee3ffa72011dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea08b35980530226b280ff53300af7f3" id="r_aea08b35980530226b280ff53300af7f3"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#aea08b35980530226b280ff53300af7f3">lastTtl_</a> = 0</td></tr>
 <tr class="separator:aea08b35980530226b280ff53300af7f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a650a1b01de678bcd9a42a3ef12d583a0" id="r_a650a1b01de678bcd9a42a3ef12d583a0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a650a1b01de678bcd9a42a3ef12d583a0">multicast_</a> = false</td></tr>
+<tr class="separator:a650a1b01de678bcd9a42a3ef12d583a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66d6be232e51c574d5e614ede19a84af" id="r_a66d6be232e51c574d5e614ede19a84af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a66d6be232e51c574d5e614ede19a84af">queryActive_</a> = false</td></tr>
 <tr class="separator:a66d6be232e51c574d5e614ede19a84af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2350e14507a1049ef556bf247d1e19c8" id="r_a2350e14507a1049ef556bf247d1e19c8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a2350e14507a1049ef556bf247d1e19c8">queryAnswered_</a> = false</td></tr>
@@ -236,7 +241,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Construct an inactive instance; call <a class="el" href="class_tinym_d_n_s.html#a8cf531b61cfcb007e21fe92da88fae43" title="Join the mDNS group, register the hostname and announce it.">begin()</a> before use. </p>
+<p>Construct an inactive instance; call <a class="el" href="class_tinym_d_n_s.html#a8cf531b61cfcb007e21fe92da88fae43" title="Join the mDNS group, register the hostname and announce it. If the group cannot be joined,...">begin()</a> before use. </p>
 
 </div>
 </div>
@@ -264,7 +269,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Bind to a UDP implementation without starting. Call <a class="el" href="class_tinym_d_n_s.html#a8cf531b61cfcb007e21fe92da88fae43" title="Join the mDNS group, register the hostname and announce it.">begin()</a> to start. </p>
+<p>Bind to a UDP implementation without starting. Call <a class="el" href="class_tinym_d_n_s.html#a8cf531b61cfcb007e21fe92da88fae43" title="Join the mDNS group, register the hostname and announce it. If the group cannot be joined,...">begin()</a> to start. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">udp</td><td>UDP implementation used for the mDNS socket. Must outlive this object. </td></tr>
@@ -407,7 +412,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Join the mDNS group, register the hostname and announce it. </p>
+<p>Join the mDNS group, register the hostname and announce it. If the group cannot be joined, falls back to a plain UDP socket on port 5353 (see <a class="el" href="class_tinym_d_n_s.html#a3036cb10c4e474bd0161f48220f01eef" title="true if the multicast group was joined; false if the plain-UDP fallback is in use.">isMulticast()</a>). </p>
 <dl class="section return"><dt>Returns</dt><dd>true if the hostname is valid and the socket was opened. </dd></dl>
 
 </div>
@@ -569,6 +574,33 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>true while captive mode is active. </p>
+
+</div>
+</div>
+<a id="a3036cb10c4e474bd0161f48220f01eef" name="a3036cb10c4e474bd0161f48220f01eef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3036cb10c4e474bd0161f48220f01eef">&#9670;&#160;</a></span>isMulticast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isMulticast </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>true if the multicast group was joined; false if the plain-UDP fallback is in use. </p>
 
 </div>
 </div>
@@ -1101,6 +1133,28 @@ Protected Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">uint32_t lastTtl_ = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a650a1b01de678bcd9a42a3ef12d583a0" name="a650a1b01de678bcd9a42a3ef12d583a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a650a1b01de678bcd9a42a3ef12d583a0">&#9670;&#160;</a></span>multicast_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool multicast_ = false</td>
         </tr>
       </table>
   </td>

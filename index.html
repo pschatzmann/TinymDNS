@@ -104,8 +104,11 @@ Platforms</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Pico W (RP2040)   </td><td class="markdownTableBodyNone"><code>WiFi.h</code>, <code>WiFiUdp.h</code>   </td><td class="markdownTableBodyNone"><code>WiFiUDP</code>   </td><td class="markdownTableBodyNone">Compiles. Not hardware tested    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Ethernet (W5x00)   </td><td class="markdownTableBodyNone"><code>Ethernet.h</code>, <code>EthernetUdp.h</code>   </td><td class="markdownTableBodyNone"><code>EthernetUDP</code>   </td><td class="markdownTableBodyNone">Compiles, but <code>begin()</code> returns false at runtime. The base <code>UDP::beginMulticast()</code> is a stub returning 0 on the UNO R4 core, so the mDNS group can't be joined   </td></tr>
+<td class="markdownTableBodyNone">Ethernet (W5x00)   </td><td class="markdownTableBodyNone"><code>Ethernet.h</code>, <code>EthernetUdp.h</code>   </td><td class="markdownTableBodyNone"><code>EthernetUDP</code>   </td><td class="markdownTableBodyNone">The Ethernet library implements <code>beginMulticast()</code> (multicast mode on the chip), so this is expected to work. Not hardware tested    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">UNO R4 Ethernet   </td><td class="markdownTableBodyNone"><code>Ethernet.h</code>   </td><td class="markdownTableBodyNone"><code>EthernetUDP</code>   </td><td class="markdownTableBodyNone">The core's lwIP is built without IGMP, so the group join is not effective. <a class="el" href="class_tinym_d_n_s.html" title="Header-only mDNS responder and resolver using a generic Arduino UDP object.">TinymDNS</a> falls back to a plain UDP socket on port 5353 (<code>isMulticast()</code> returns false): announcements and queries are sent to 224.0.0.251, but receiving queries depends on the stack. Not hardware tested   </td></tr>
 </table>
+<p>If joining the multicast group fails, <code>begin()</code> falls back to a plain UDP socket and only returns false if that also fails. Use <code>isMulticast()</code> to see which mode is active.</p>
 <p>Include the platform headers before <code><a class="el" href="_tinym_d_n_s_8h.html" title="Header-only mDNS (RFC 6762) responder and resolver for Arduino.">TinymDNS.h</a></code>. The example <code>examples/MDNS/MDNS.ino</code> selects the right WiFi header and sleep call for ESP32 and ESP8266 automatically.</p>
 <h1><a class="anchor" id="autotoc_md5"></a>
 Documentation</h1>
