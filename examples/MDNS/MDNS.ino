@@ -1,6 +1,9 @@
 #if defined(ESP8266)
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
+#elif defined(ARDUINO_UNOR4_WIFI)
+#include <WiFiS3.h>
+#include <WiFiUdp.h>
 #else
 #include <WiFi.h>
 #include <WiFiUdp.h>
@@ -21,7 +24,7 @@ void setup() {
   // Disable WiFi power save so the device can receive multicast queries reliably
 #if defined(ESP8266)
   WiFi.setSleepMode(WIFI_NONE_SLEEP);
-#else
+#elif defined(ESP32)
   WiFi.setSleep(false);
 #endif
 

@@ -34,6 +34,10 @@
 #include <IPAddress.h>
 #include <Udp.h>
 
+#if defined(ESP8266)
+#include <WiFiUdp.h>
+#endif
+
 #ifndef TINYMDNS_DEFAULT_ANNOUNCE_INTERVAL_MS
 #define TINYMDNS_DEFAULT_ANNOUNCE_INTERVAL_MS 30000
 #endif
@@ -87,7 +91,13 @@ class TinymDNS {
     udp_ = &udp;
     address_ = address;
     ttl_ = ttl;
-    if (!udp_->beginMulticast(TINYMDNS_MULTICAST_IP, TINYMDNS_PORT)) {
+#if defined(ESP8266)
+    // ESP8266 multicast join is only on WiFiUDP and needs the interface address first
+    bool joined = static_cast<WiFiUDP *>(udp_)->beginMulticast(IPAddress(0, 0, 0, 0), TINYMDNS_MULTICAST_IP, TINYMDNS_PORT);
+#else
+    bool joined = udp_->beginMulticast(TINYMDNS_MULTICAST_IP, TINYMDNS_PORT);
+#endif
+    if (!joined) {
       started_ = false;
       return false;
     }
