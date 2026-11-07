@@ -31,24 +31,10 @@ git clone https://github.com/pschatzmann/TinymDNS.git
 lib_deps = https://github.com/pschatzmann/TinymDNS.git
 ```
 
-## Platforms
-
-TinymDNS only needs a UDP object, so it works with any Arduino network stack. Pass the platform's UDP class to the constructor.
-
-| Platform | Include | UDP class | Notes |
-|----------|---------|-----------|-------|
-| ESP32 (core 3.x) | `WiFi.h`, `WiFiUdp.h` | `WiFiUDP` | Use `WiFi.setSleep(false)` |
-| ESP8266 (core 3.x) | `ESP8266WiFi.h`, `WiFiUdp.h` | `WiFiUDP` | Use `WiFi.setSleepMode(WIFI_NONE_SLEEP)`. The library calls the ESP8266 `beginMulticast(interface, group, port)` overload internally |
-| UNO R4 WiFi | `WiFiS3.h`, `WiFiUdp.h` | `WiFiUDP` | Compiles. Not hardware tested |
-| Pico W (RP2040) | `WiFi.h`, `WiFiUdp.h` | `WiFiUDP` | Compiles. Not hardware tested |
-| Ethernet (W5x00) | `Ethernet.h`, `EthernetUdp.h` | `EthernetUDP` | The Ethernet library implements `beginMulticast()` (multicast mode on the chip), so this is expected to work. Not hardware tested |
-| UNO R4 Ethernet | `Ethernet.h` | `EthernetUDP` | The core's lwIP is built without IGMP, so the group join is not effective. TinymDNS falls back to a plain UDP socket on port 5353 (`isMulticast()` returns false): announcements and queries are sent to 224.0.0.251, but receiving queries depends on the stack. Not hardware tested |
-
-If joining the multicast group fails, `begin()` falls back to a plain UDP socket and only returns false if that also fails. Use `isMulticast()` to see which mode is active.
-
-Include the platform headers before `TinymDNS.h`. The example `examples/MDNS/MDNS.ino` selects the right WiFi header and sleep call for ESP32 and ESP8266 automatically.
-
 ## Documentation
+
+Platform-specific includes and setup: [Platforms](https://github.com/pschatzmann/TinymDNS/wiki/Platforms).
+
 
 - [Wiki](https://github.com/pschatzmann/TinymDNS/wiki): usage, limitations, and testing.
 - [Doxygen API reference](https://pschatzmann.github.io/TinymDNS/annotated.html).
