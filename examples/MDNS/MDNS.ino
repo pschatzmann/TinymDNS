@@ -1,5 +1,10 @@
+#if defined(ESP8266)
+#include <ESP8266WiFi.h>
+#include <WiFiUdp.h>
+#else
 #include <WiFi.h>
-#include <WiFiUDP.h>
+#include <WiFiUdp.h>
+#endif
 #include <TinymDNS.h>
 
 const char *ssid = "your-ssid";
@@ -14,7 +19,11 @@ void setup() {
   while (WiFi.status() != WL_CONNECTED) delay(500);
 
   // Disable WiFi power save so the device can receive multicast queries reliably
+#if defined(ESP8266)
+  WiFi.setSleepMode(WIFI_NONE_SLEEP);
+#else
   WiFi.setSleep(false);
+#endif
 
   // Answer queries for esp32.local
   if (mdns.begin(udp, "esp32", WiFi.localIP())) {

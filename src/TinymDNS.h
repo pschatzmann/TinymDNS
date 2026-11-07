@@ -62,6 +62,12 @@ class TinymDNS {
   TinymDNS() = default;
 
   /**
+   * @brief Bind to a UDP implementation without starting. Call begin() to start.
+   * @param udp UDP implementation used for the mDNS socket. Must outlive this object.
+   */
+  explicit TinymDNS(UDP &udp) : udp_(&udp) {}
+
+  /**
    * @brief Construct and start in one step.
    * @param udp UDP implementation used for the mDNS socket. Must outlive this object.
    * @param hostname Local hostname without ".local" (e.g. "esp32").
