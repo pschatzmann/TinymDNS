@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mdnsresult_0',['MDNSResult',['../_tinym_d_n_s_8h.html#a396c21a2ef041a3f45a66f22f3b54c09',1,'TinymDNS.h']]]
+  ['event_0',['Event',['../class_tinym_d_n_s.html#a5667b805d857c6d28f83f6038a0272d3',1,'TinymDNS']]]
 ];

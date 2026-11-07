@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['notconfigured_0',['NotConfigured',['../_tinym_d_n_s_8h.html#a396c21a2ef041a3f45a66f22f3b54c09a52c1415ae26d69e91093beaac88e0815',1,'TinymDNS.h']]]
+  ['goodbye_0',['Goodbye',['../class_tinym_d_n_s.html#a5667b805d857c6d28f83f6038a0272d3a6fc422233a40a75a1f028e11c3cd1140',1,'TinymDNS']]]
 ];

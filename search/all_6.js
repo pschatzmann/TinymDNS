@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['handlepacket_0',['handlePacket',['../class_tinym_d_n_s.html#a65a06ddf499b56a9ac34f9b67fbdfaf2',1,'TinymDNS']]],
-  ['haslocalsuffix_1',['hasLocalSuffix',['../class_tinym_d_n_s_wire.html#a4a6056616514b6f7e9302ef29390a6df',1,'TinymDNSWire']]]
+  ['goodbye_0',['Goodbye',['../class_tinym_d_n_s.html#a5667b805d857c6d28f83f6038a0272d3a6fc422233a40a75a1f028e11c3cd1140',1,'TinymDNS']]]
 ];
