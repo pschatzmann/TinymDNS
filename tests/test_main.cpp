@@ -24,8 +24,10 @@ class MockUDP : public UDP {
   std::deque<Packet> rx;
   std::function<void(MockUDP &, const Packet &)> onSend;
 
-  int beginMulticast(IPAddress, uint16_t) override { return 1; }
-  int begin(uint16_t) override { return 1; }
+  bool multicastOk = true;
+  bool plainOk = true;
+  int beginMulticast(IPAddress, uint16_t) override { return multicastOk ? 1 : 0; }
+  int begin(uint16_t) override { return plainOk ? 1 : 0; }
   void stop() override {}
   int beginPacket(IPAddress ip, uint16_t port) override {
     out_.ip = ip;
@@ -247,7 +249,34 @@ static void testResolve() {
   CHECK(!m6.isCaptive());
 }
 
+static void testFallback() {
+  // Multicast join fails: fall back to plain UDP and still announce to the group.
+  MockUDP u;
+  u.multicastOk = false;
+  TinymDNS m;
+  CHECK(m.begin(u, "esp32", IPAddress(192, 168, 1, 50)));
+  CHECK(m.isActive());
+  CHECK(!m.isMulticast());
+  CHECK(!u.sent.empty());
+  CHECK(u.sent[0].ip == TINYMDNS_MULTICAST_IP);
+
+  // Both fail: begin() reports failure.
+  MockUDP u2;
+  u2.multicastOk = false;
+  u2.plainOk = false;
+  TinymDNS m2;
+  CHECK(!m2.begin(u2, "esp32", IPAddress(192, 168, 1, 50)));
+  CHECK(!m2.isActive());
+
+  // Normal case reports multicast mode.
+  MockUDP u3;
+  TinymDNS m3;
+  CHECK(m3.begin(u3, "esp32", IPAddress(192, 168, 1, 50)));
+  CHECK(m3.isMulticast());
+}
+
 int main() {
+  testFallback();
   testWire();
   testResponder();
   testResolve();

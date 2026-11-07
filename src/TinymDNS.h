@@ -84,6 +84,8 @@ class TinymDNS {
 
   /**
    * @brief Join the mDNS group, register the hostname and announce it.
+   * If the group cannot be joined, falls back to a plain UDP socket on port 5353
+   * (see isMulticast()).
    * @return true if the hostname is valid and the socket was opened.
    */
   bool begin(UDP &udp, const char *hostname, IPAddress address, uint32_t ttl = TINYMDNS_DEFAULT_TTL) {
@@ -97,14 +99,23 @@ class TinymDNS {
 #else
     bool joined = udp_->beginMulticast(TINYMDNS_MULTICAST_IP, TINYMDNS_PORT);
 #endif
+    multicast_ = joined;
     if (!joined) {
-      started_ = false;
-      return false;
+      // Fallback for stacks without a working multicast join (e.g. cores built
+      // without IGMP): open a plain UDP socket on the mDNS port. Sending to the
+      // group address still works; receiving queries depends on the stack.
+      if (!udp_->begin(TINYMDNS_PORT)) {
+        started_ = false;
+        return false;
+      }
     }
     started_ = true;
     announce();
     return true;
   }
+
+  /** @brief true if the multicast group was joined; false if the plain-UDP fallback is in use. */
+  bool isMulticast() const { return multicast_; }
 
   /** @brief Stop the instance and close the socket. */
   void end() {
@@ -314,6 +325,7 @@ class TinymDNS {
   uint32_t announceIntervalMs_ = TINYMDNS_DEFAULT_ANNOUNCE_INTERVAL_MS;
   uint32_t lastAnnounce_ = 0;
   bool started_ = false;
+  bool multicast_ = false;  // false when running on the plain-UDP fallback
 
   // resolve() state
   char queryName_[TINYMDNS_NAME_MAX] = {0};
