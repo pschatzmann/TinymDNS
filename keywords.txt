@@ -1,0 +1,38 @@
+#######################################
+# Syntax Coloring Map For TinymDNS
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+TinymDNS	KEYWORD1
+TinymDNSWire	KEYWORD1
+MDNSResult	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+end	KEYWORD2
+loop	KEYWORD2
+resolve	KEYWORD2
+announce	KEYWORD2
+setAddress	KEYWORD2
+setTimeout	KEYWORD2
+setAnnounceInterval	KEYWORD2
+lastResult	KEYWORD2
+lastTtl	KEYWORD2
+fqdn	KEYWORD2
+isActive	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+Ok	LITERAL1
+NotConfigured	LITERAL1
+InvalidName	LITERAL1
+SendFailed	LITERAL1
+Timeout	LITERAL1
