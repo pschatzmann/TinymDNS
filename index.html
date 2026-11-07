@@ -90,13 +90,31 @@ Arduino IDE</h2>
 PlatformIO</h2>
 <div class="fragment"><div class="line">lib_deps = https://github.com/pschatzmann/TinymDNS.git</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+Platforms</h1>
+<p><a class="el" href="class_tinym_d_n_s.html" title="Header-only mDNS responder and resolver using a generic Arduino UDP object.">TinymDNS</a> only needs a UDP object, so it works with any Arduino network stack. Pass the platform's UDP class to the constructor.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Platform   </th><th class="markdownTableHeadNone">Include   </th><th class="markdownTableHeadNone">UDP class   </th><th class="markdownTableHeadNone">Notes    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ESP32 (core 3.x)   </td><td class="markdownTableBodyNone"><code>WiFi.h</code>, <code>WiFiUdp.h</code>   </td><td class="markdownTableBodyNone"><code>WiFiUDP</code>   </td><td class="markdownTableBodyNone">Use <code>WiFi.setSleep(false)</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">ESP8266 (core 3.x)   </td><td class="markdownTableBodyNone"><code>ESP8266WiFi.h</code>, <code>WiFiUdp.h</code>   </td><td class="markdownTableBodyNone"><code>WiFiUDP</code>   </td><td class="markdownTableBodyNone">Use <code>WiFi.setSleepMode(WIFI_NONE_SLEEP)</code>. The library calls the ESP8266 <code>beginMulticast(interface, group, port)</code> overload internally    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">UNO R4 WiFi   </td><td class="markdownTableBodyNone"><code>WiFiS3.h</code>, <code>WiFiUdp.h</code>   </td><td class="markdownTableBodyNone"><code>WiFiUDP</code>   </td><td class="markdownTableBodyNone">Compiles. Not hardware tested    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Pico W (RP2040)   </td><td class="markdownTableBodyNone"><code>WiFi.h</code>, <code>WiFiUdp.h</code>   </td><td class="markdownTableBodyNone"><code>WiFiUDP</code>   </td><td class="markdownTableBodyNone">Compiles. Not hardware tested    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Ethernet (W5x00)   </td><td class="markdownTableBodyNone"><code>Ethernet.h</code>, <code>EthernetUdp.h</code>   </td><td class="markdownTableBodyNone"><code>EthernetUDP</code>   </td><td class="markdownTableBodyNone">Compiles, but <code>begin()</code> returns false at runtime. The base <code>UDP::beginMulticast()</code> is a stub returning 0 on the UNO R4 core, so the mDNS group can't be joined   </td></tr>
+</table>
+<p>Include the platform headers before <code><a class="el" href="_tinym_d_n_s_8h.html" title="Header-only mDNS (RFC 6762) responder and resolver for Arduino.">TinymDNS.h</a></code>. The example <code>examples/MDNS/MDNS.ino</code> selects the right WiFi header and sleep call for ESP32 and ESP8266 automatically.</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
 Documentation</h1>
 <ul>
 <li><a href="https://github.com/pschatzmann/TinymDNS/wiki">Wiki</a>: usage, limitations, and testing.</li>
 <li><a href="https://pschatzmann.github.io/TinymDNS/annotated.html">Doxygen API reference</a>.</li>
 <li><a href="examples/"><code>examples/</code></a>: <code>MDNS</code> sketch.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 License</h1>
 <p>Released under the MIT License. See [LICENSE](LICENSE). </p>
 </div></div><!-- PageDoc -->
