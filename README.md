@@ -33,10 +33,7 @@ lib_deps = https://github.com/pschatzmann/TinymDNS.git
 
 ## Documentation
 
-Platform-specific includes and setup: [Platforms](https://github.com/pschatzmann/TinymDNS/wiki/Platforms).
-
-
-- [Wiki](https://github.com/pschatzmann/TinymDNS/wiki): usage, limitations, and testing.
+- [Wiki](https://github.com/pschatzmann/TinymDNS/wiki): usage, limitations, testing, and [platform-specific includes](https://github.com/pschatzmann/TinymDNS/wiki/Platforms).
 - [Doxygen API reference](https://pschatzmann.github.io/TinymDNS/annotated.html).
 - [`examples/`](examples/): `MDNS` sketch.
 
