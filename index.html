@@ -93,25 +93,11 @@ PlatformIO</h2>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
 Documentation</h1>
 <ul>
-<li><a href="https://github.com/pschatzmann/TinymDNS/wiki">Wiki</a>: usage guides for responding, resolving, and testing.</li>
+<li><a href="https://github.com/pschatzmann/TinymDNS/wiki">Wiki</a>: usage, limitations, and testing.</li>
 <li><a href="https://pschatzmann.github.io/TinymDNS/annotated.html">Doxygen API reference</a>.</li>
 <li><a href="examples/"><code>examples/</code></a>: <code>MDNS</code> sketch.</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md5"></a>
-Limitations</h1>
-<ul>
-<li>IPv4 A records only.</li>
-<li>Hostname only: no DNS-SD service or TXT records.</li>
-<li>No conflict probing or renaming.</li>
-<li><code>resolve()</code> is blocking.</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md6"></a>
-Testing</h1>
-<p>Host-side tests use in-memory stubs and need no hardware:</p>
-<div class="fragment"><div class="line">cmake -S . -B build -DBUILD_TESTING=ON</div>
-<div class="line">cmake --build build</div>
-<div class="line">ctest --test-dir build --output-on-failure</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md7"></a>
 License</h1>
 <p>Released under the MIT License. See [LICENSE](LICENSE). </p>
 </div></div><!-- PageDoc -->
