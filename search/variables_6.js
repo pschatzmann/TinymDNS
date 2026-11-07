@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['timeoutms_5f_0',['timeoutMs_',['../class_tinym_d_n_s.html#a84aa6aa481cf37951888b94c43c41c80',1,'TinymDNS']]],
-  ['ttl_5f_1',['ttl_',['../class_tinym_d_n_s.html#a85c46fb685453c1631d3454ed791e513',1,'TinymDNS']]]
+  ['started_5f_0',['started_',['../class_tinym_d_n_s.html#a5ad69cfc4163d7797bc0f0d7eadb95a7',1,'TinymDNS']]],
+  ['subnetmask_5f_1',['subnetMask_',['../class_tinym_d_n_s.html#ad92e395bc089aa2d2a4f75afdb0f1447',1,'TinymDNS']]]
 ];

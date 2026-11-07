@@ -95,10 +95,10 @@ Collaboration diagram for TinymDNS:</div>
 <area shape="poly" title=" " alt="" coords="108,45,106,78,105,111,112,145,128,174,145,185,174,194,243,208,238,208,172,199,143,190,124,178,107,147,100,112,100,77,106,50"/>
 <area shape="rect" title=" " alt="" coords="185,5,270,33"/>
 <area shape="poly" title=" " alt="" coords="222,46,218,77,217,110,220,143,232,175,242,187,257,200,252,199,239,191,227,177,215,145,211,110,213,76,219,51"/>
-<area shape="rect" title=" " alt="" coords="308,5,382,33"/>
+<area shape="rect" title=" " alt="" coords="320,5,370,33"/>
 <area shape="poly" title=" " alt="" coords="345,47,339,109,330,144,318,177,301,202,298,197,313,175,325,142,333,108,342,51"/>
-<area shape="rect" title=" " alt="" coords="487,5,536,33"/>
-<area shape="poly" title=" " alt="" coords="512,46,504,121,496,155,484,178,458,192,419,202,332,212,332,207,418,197,456,187,480,174,491,153,499,120,508,50"/>
+<area shape="rect" title=" " alt="" coords="446,5,521,33"/>
+<area shape="poly" title=" " alt="" coords="484,47,476,121,468,155,456,178,435,190,404,199,332,211,332,206,403,194,433,185,452,174,463,153,471,120,480,50"/>
 <area shape="rect" title=" " alt="" coords="599,5,701,33"/>
 <area shape="poly" title=" " alt="" coords="656,46,658,79,654,114,644,149,623,178,607,185,580,192,501,202,332,213,332,208,501,196,579,186,605,180,619,174,639,146,649,113,652,79,652,50"/>
 </map>
@@ -130,6 +130,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a354c7d206ec624b9bdbb81f3b788f826" id="r_a354c7d206ec624b9bdbb81f3b788f826"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a354c7d206ec624b9bdbb81f3b788f826">isActive</a> () const</td></tr>
 <tr class="memdesc:a354c7d206ec624b9bdbb81f3b788f826"><td class="mdescLeft">&#160;</td><td class="mdescRight">true while the instance is running.  <br /></td></tr>
 <tr class="separator:a354c7d206ec624b9bdbb81f3b788f826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a136c501b466f2017a7ce93380f23bc19" id="r_a136c501b466f2017a7ce93380f23bc19"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a136c501b466f2017a7ce93380f23bc19">isCaptive</a> () const</td></tr>
+<tr class="memdesc:a136c501b466f2017a7ce93380f23bc19"><td class="mdescLeft">&#160;</td><td class="mdescRight">true while captive mode is active.  <br /></td></tr>
+<tr class="separator:a136c501b466f2017a7ce93380f23bc19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a251a48b23bd7022b24846929650da5c2" id="r_a251a48b23bd7022b24846929650da5c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_tinym_d_n_s_8h.html#a396c21a2ef041a3f45a66f22f3b54c09">MDNSResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a251a48b23bd7022b24846929650da5c2">lastResult</a> () const</td></tr>
 <tr class="memdesc:a251a48b23bd7022b24846929650da5c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outcome of the most recent <a class="el" href="class_tinym_d_n_s.html#a2d6fee4daf3fb8af66e65a8631ad17bc" title="Resolve a &quot;.local&quot; hostname (a bare label gets &quot;.local&quot; appended) to IPv4. Blocks up to the configure...">resolve()</a> call.  <br /></td></tr>
 <tr class="separator:a251a48b23bd7022b24846929650da5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,6 +151,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a77cbc7e8a9145930a3afa751993a4751" id="r_a77cbc7e8a9145930a3afa751993a4751"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a77cbc7e8a9145930a3afa751993a4751">setAnnounceInterval</a> (uint32_t intervalMs)</td></tr>
 <tr class="memdesc:a77cbc7e8a9145930a3afa751993a4751"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interval between unsolicited announcements in <a class="el" href="class_tinym_d_n_s.html#afe461d27b9c48d5921c00d521181f12f" title="Process pending mDNS traffic and periodic announcements. Call from loop().">loop()</a>; 0 disables them.  <br /></td></tr>
 <tr class="separator:a77cbc7e8a9145930a3afa751993a4751"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10fa05d4ef34cc9f4d75dabc43c8b53c" id="r_a10fa05d4ef34cc9f4d75dabc43c8b53c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a10fa05d4ef34cc9f4d75dabc43c8b53c">setCaptive</a> (bool active)</td></tr>
+<tr class="memdesc:a10fa05d4ef34cc9f4d75dabc43c8b53c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable captive mode. While active, <a class="el" href="class_tinym_d_n_s.html#a2d6fee4daf3fb8af66e65a8631ad17bc" title="Resolve a &quot;.local&quot; hostname (a bare label gets &quot;.local&quot; appended) to IPv4. Blocks up to the configure...">resolve()</a> returns the local address without sending a query, so every name points to this device.  <br /></td></tr>
+<tr class="separator:a10fa05d4ef34cc9f4d75dabc43c8b53c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c7a816997ab0773a4be745f008f93b8" id="r_a4c7a816997ab0773a4be745f008f93b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a4c7a816997ab0773a4be745f008f93b8">setSubnetMask</a> (IPAddress mask)</td></tr>
 <tr class="memdesc:a4c7a816997ab0773a4be745f008f93b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restrict <a class="el" href="class_tinym_d_n_s.html#a2d6fee4daf3fb8af66e65a8631ad17bc" title="Resolve a &quot;.local&quot; hostname (a bare label gets &quot;.local&quot; appended) to IPv4. Blocks up to the configure...">resolve()</a> to answers on the local subnet. An answer is accepted only if it matches the registered address under <code>mask</code>. Use WiFi.subnetMask() (or the equivalent). The default 0.0.0.0 accepts any answer.  <br /></td></tr>
 <tr class="separator:a4c7a816997ab0773a4be745f008f93b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -176,6 +182,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a34b79da052805e42720d4e0c4f4d6954"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc3696c543d1773e8ea884f9edaf4122" id="r_afc3696c543d1773e8ea884f9edaf4122"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#afc3696c543d1773e8ea884f9edaf4122">answerTtl_</a> = 0</td></tr>
 <tr class="separator:afc3696c543d1773e8ea884f9edaf4122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b60f67787c6ac6797c9d32813ab7010" id="r_a5b60f67787c6ac6797c9d32813ab7010"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a5b60f67787c6ac6797c9d32813ab7010">captive_</a> = false</td></tr>
+<tr class="separator:a5b60f67787c6ac6797c9d32813ab7010"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29760ef5de2f9cfcaba6acbfe67d4bd3" id="r_a29760ef5de2f9cfcaba6acbfe67d4bd3"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a29760ef5de2f9cfcaba6acbfe67d4bd3">fqdn_</a> [256] = {0}</td></tr>
 <tr class="separator:a29760ef5de2f9cfcaba6acbfe67d4bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12db7519c2c63cdecf6558b9e48085d1" id="r_a12db7519c2c63cdecf6558b9e48085d1"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s.html#a12db7519c2c63cdecf6558b9e48085d1">lastAnnounce_</a> = 0</td></tr>
@@ -537,6 +545,33 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a136c501b466f2017a7ce93380f23bc19" name="a136c501b466f2017a7ce93380f23bc19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a136c501b466f2017a7ce93380f23bc19">&#9670;&#160;</a></span>isCaptive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isCaptive </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>true while captive mode is active. </p>
+
+</div>
+</div>
 <a id="a251a48b23bd7022b24846929650da5c2" name="a251a48b23bd7022b24846929650da5c2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a251a48b23bd7022b24846929650da5c2">&#9670;&#160;</a></span>lastResult()</h2>
 
@@ -794,6 +829,34 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a10fa05d4ef34cc9f4d75dabc43c8b53c" name="a10fa05d4ef34cc9f4d75dabc43c8b53c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10fa05d4ef34cc9f4d75dabc43c8b53c">&#9670;&#160;</a></span>setCaptive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setCaptive </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>active</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enable or disable captive mode. While active, <a class="el" href="class_tinym_d_n_s.html#a2d6fee4daf3fb8af66e65a8631ad17bc" title="Resolve a &quot;.local&quot; hostname (a bare label gets &quot;.local&quot; appended) to IPv4. Blocks up to the configure...">resolve()</a> returns the local address without sending a query, so every name points to this device. </p>
+
+</div>
+</div>
 <a id="a4c7a816997ab0773a4be745f008f93b8" name="a4c7a816997ab0773a4be745f008f93b8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4c7a816997ab0773a4be745f008f93b8">&#9670;&#160;</a></span>setSubnetMask()</h2>
 
@@ -928,6 +991,28 @@ Protected Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">uint32_t answerTtl_ = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b60f67787c6ac6797c9d32813ab7010" name="a5b60f67787c6ac6797c9d32813ab7010"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b60f67787c6ac6797c9d32813ab7010">&#9670;&#160;</a></span>captive_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool captive_ = false</td>
         </tr>
       </table>
   </td>

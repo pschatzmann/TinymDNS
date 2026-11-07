@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['queryactive_5f_0',['queryActive_',['../class_tinym_d_n_s.html#a66d6be232e51c574d5e614ede19a84af',1,'TinymDNS']]],
-  ['queryanswered_5f_1',['queryAnswered_',['../class_tinym_d_n_s.html#a2350e14507a1049ef556bf247d1e19c8',1,'TinymDNS']]],
-  ['queryname_5f_2',['queryName_',['../class_tinym_d_n_s.html#af508b7185e45bd5322b75827f73da570',1,'TinymDNS']]]
+  ['parsearesponse_0',['parseAResponse',['../class_tinym_d_n_s_wire.html#a9cf89c0c49a49471aadf07d4ba576b1f',1,'TinymDNSWire']]],
+  ['platformio_1',['PlatformIO',['../index.html#autotoc_md3',1,'']]],
+  ['platforms_2',['Platforms',['../index.html#autotoc_md4',1,'']]],
+  ['poll_3',['poll',['../class_tinym_d_n_s.html#a9dfab88c373c2f12a06353ea7365d4b0',1,'TinymDNS']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fqdn_5f_0',['fqdn_',['../class_tinym_d_n_s.html#a29760ef5de2f9cfcaba6acbfe67d4bd3',1,'TinymDNS']]]
+  ['captive_5f_0',['captive_',['../class_tinym_d_n_s.html#a5b60f67787c6ac6797c9d32813ab7010',1,'TinymDNS']]]
 ];

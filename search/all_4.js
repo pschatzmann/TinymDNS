@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['fail_0',['fail',['../class_tinym_d_n_s.html#a9fec57457877b083d46693d003d7956c',1,'TinymDNS']]],
-  ['fqdn_1',['fqdn',['../class_tinym_d_n_s.html#a44b9db5615d24358eabc27088a6a382e',1,'TinymDNS']]],
-  ['fqdn_5f_2',['fqdn_',['../class_tinym_d_n_s.html#a29760ef5de2f9cfcaba6acbfe67d4bd3',1,'TinymDNS']]]
+  ['encodename_0',['encodeName',['../class_tinym_d_n_s_wire.html#a7ae674d0d5c9740e45fb496c4337b00c',1,'TinymDNSWire']]],
+  ['end_1',['end',['../class_tinym_d_n_s.html#aaf81d3fdaf258088d7692fa70cece087',1,'TinymDNS']]],
+  ['equalsignorecase_2',['equalsIgnoreCase',['../class_tinym_d_n_s_wire.html#a1e631c291bd176a1a89c64bc13faaedf',1,'TinymDNSWire']]]
 ];
