@@ -2,7 +2,7 @@ var searchData=
 [
   ['timeout_0',['Timeout',['../_tinym_d_n_s_8h.html#a396c21a2ef041a3f45a66f22f3b54c09ac85a251cc457840f1e032f1b733e9398',1,'TinymDNS.h']]],
   ['timeoutms_5f_1',['timeoutMs_',['../class_tinym_d_n_s.html#a84aa6aa481cf37951888b94c43c41c80',1,'TinymDNS']]],
-  ['tinymdns_2',['tinymdns',['../index.html',1,'TinymDNS'],['../class_tinym_d_n_s.html',1,'TinymDNS'],['../class_tinym_d_n_s.html#a090b8907b14d0eaf9ebe1ab72768339d',1,'TinymDNS::TinymDNS()=default'],['../class_tinym_d_n_s.html#aea66d815ef36e268997abe5e0ac35de3',1,'TinymDNS::TinymDNS(UDP &amp;udp, const char *hostname, IPAddress address, uint32_t ttl=120)']]],
+  ['tinymdns_2',['tinymdns',['../index.html',1,'TinymDNS'],['../class_tinym_d_n_s.html',1,'TinymDNS'],['../class_tinym_d_n_s.html#aea66d815ef36e268997abe5e0ac35de3',1,'TinymDNS::TinymDNS(UDP &amp;udp, const char *hostname, IPAddress address, uint32_t ttl=120)'],['../class_tinym_d_n_s.html#a562dd46974f44bef44c920628cd0559c',1,'TinymDNS::TinymDNS(UDP &amp;udp)'],['../class_tinym_d_n_s.html#a090b8907b14d0eaf9ebe1ab72768339d',1,'TinymDNS::TinymDNS()=default']]],
   ['tinymdns_2eh_3',['TinymDNS.h',['../_tinym_d_n_s_8h.html',1,'']]],
   ['tinymdns_5fclient_5fport_4',['TINYMDNS_CLIENT_PORT',['../_tinym_d_n_s_wire_8h.html#a7b2c0bb51dbc9c500b61f47ed978970b',1,'TinymDNSWire.h']]],
   ['tinymdns_5fdefault_5fannounce_5finterval_5fms_5',['TINYMDNS_DEFAULT_ANNOUNCE_INTERVAL_MS',['../_tinym_d_n_s_8h.html#af7262db76086924fdaa352eac89e3381',1,'TinymDNS.h']]],
