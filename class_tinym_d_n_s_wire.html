@@ -113,12 +113,15 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e631c291bd176a1a89c64bc13faaedf" id="r_a1e631c291bd176a1a89c64bc13faaedf"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s_wire.html#a1e631c291bd176a1a89c64bc13faaedf">equalsIgnoreCase</a> (const char *a, const char *b)</td></tr>
 <tr class="memdesc:a1e631c291bd176a1a89c64bc13faaedf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Case-insensitive comparison of two NUL-terminated names.  <br /></td></tr>
 <tr class="separator:a1e631c291bd176a1a89c64bc13faaedf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f01e3ef53e9043a78cf2f9142866850" id="r_a0f01e3ef53e9043a78cf2f9142866850"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s_wire.html#a0f01e3ef53e9043a78cf2f9142866850">inSubnet</a> (IPAddress a, IPAddress b, IPAddress mask)</td></tr>
+<tr class="memdesc:a0f01e3ef53e9043a78cf2f9142866850"><td class="mdescLeft">&#160;</td><td class="mdescRight">true if <code>a</code> and <code>b</code> are equal under <code>mask</code>.  <br /></td></tr>
+<tr class="separator:a0f01e3ef53e9043a78cf2f9142866850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18ac9be0db6e92c5396c4dc32b1b04e8" id="r_a18ac9be0db6e92c5396c4dc32b1b04e8"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s_wire.html#a18ac9be0db6e92c5396c4dc32b1b04e8">makeLocalName</a> (const char *name, char *out, size_t cap)</td></tr>
 <tr class="memdesc:a18ac9be0db6e92c5396c4dc32b1b04e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build "name.local" from a hostname or an already qualified name.  <br /></td></tr>
 <tr class="separator:a18ac9be0db6e92c5396c4dc32b1b04e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc85e055e74d996ce4feddcb858eb699" id="r_abc85e055e74d996ce4feddcb858eb699"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s_wire.html#abc85e055e74d996ce4feddcb858eb699">parseAResponse</a> (const uint8_t *msg, size_t len, const char *fqdn, IPAddress &amp;ip, uint32_t &amp;ttl)</td></tr>
-<tr class="memdesc:abc85e055e74d996ce4feddcb858eb699"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a response and extract the first A record for <code>fqdn</code>.  <br /></td></tr>
-<tr class="separator:abc85e055e74d996ce4feddcb858eb699"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cf89c0c49a49471aadf07d4ba576b1f" id="r_a9cf89c0c49a49471aadf07d4ba576b1f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s_wire.html#a9cf89c0c49a49471aadf07d4ba576b1f">parseAResponse</a> (const uint8_t *msg, size_t len, const char *fqdn, IPAddress &amp;ip, uint32_t &amp;ttl, IPAddress net=IPAddress(0, 0, 0, 0), IPAddress mask=IPAddress(0, 0, 0, 0))</td></tr>
+<tr class="memdesc:a9cf89c0c49a49471aadf07d4ba576b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a response and extract the first A record for <code>fqdn</code>. Records outside the subnet given by <code>net</code> and <code>mask</code> are skipped. An all-zero <code>mask</code> accepts any address.  <br /></td></tr>
+<tr class="separator:a9cf89c0c49a49471aadf07d4ba576b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace0eb676f4def35519005c33b62a504d" id="r_ace0eb676f4def35519005c33b62a504d"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s_wire.html#ace0eb676f4def35519005c33b62a504d">readU16</a> (const uint8_t *p)</td></tr>
 <tr class="separator:ace0eb676f4def35519005c33b62a504d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a4ecf2a0b4382712125bd85e84bf19d" id="r_a7a4ecf2a0b4382712125bd85e84bf19d"><td class="memItemLeft" align="right" valign="top">static uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tinym_d_n_s_wire.html#a7a4ecf2a0b4382712125bd85e84bf19d">readU32</a> (const uint8_t *p)</td></tr>
@@ -456,6 +459,50 @@ Static Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a0f01e3ef53e9043a78cf2f9142866850" name="a0f01e3ef53e9043a78cf2f9142866850"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f01e3ef53e9043a78cf2f9142866850">&#9670;&#160;</a></span>inSubnet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool inSubnet </td>
+          <td>(</td>
+          <td class="paramtype">IPAddress&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IPAddress&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IPAddress&#160;</td>
+          <td class="paramname"><em>mask</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>true if <code>a</code> and <code>b</code> are equal under <code>mask</code>. </p>
+
+</div>
+</div>
 <a id="a18ac9be0db6e92c5396c4dc32b1b04e8" name="a18ac9be0db6e92c5396c4dc32b1b04e8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a18ac9be0db6e92c5396c4dc32b1b04e8">&#9670;&#160;</a></span>makeLocalName()</h2>
 
@@ -501,8 +548,8 @@ Static Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="abc85e055e74d996ce4feddcb858eb699" name="abc85e055e74d996ce4feddcb858eb699"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc85e055e74d996ce4feddcb858eb699">&#9670;&#160;</a></span>parseAResponse()</h2>
+<a id="a9cf89c0c49a49471aadf07d4ba576b1f" name="a9cf89c0c49a49471aadf07d4ba576b1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cf89c0c49a49471aadf07d4ba576b1f">&#9670;&#160;</a></span>parseAResponse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -538,7 +585,19 @@ Static Protected Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint32_t &amp;&#160;</td>
-          <td class="paramname"><em>ttl</em>&#160;</td>
+          <td class="paramname"><em>ttl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IPAddress&#160;</td>
+          <td class="paramname"><em>net</em> = <code>IPAddress(0,&#160;0,&#160;0,&#160;0)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IPAddress&#160;</td>
+          <td class="paramname"><em>mask</em> = <code>IPAddress(0,&#160;0,&#160;0,&#160;0)</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -553,7 +612,7 @@ Static Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Parse a response and extract the first A record for <code>fqdn</code>. </p>
+<p>Parse a response and extract the first A record for <code>fqdn</code>. Records outside the subnet given by <code>net</code> and <code>mask</code> are skipped. An all-zero <code>mask</code> accepts any address. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if a matching A record was found. </dd></dl>
 
 </div>
