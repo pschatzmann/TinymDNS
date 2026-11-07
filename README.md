@@ -34,27 +34,9 @@ lib_deps = https://github.com/pschatzmann/TinymDNS.git
 
 ## Documentation
 
-- [Wiki](https://github.com/pschatzmann/TinymDNS/wiki): usage guides for
-  responding, resolving, and testing.
+- [Wiki](https://github.com/pschatzmann/TinymDNS/wiki): usage, limitations, and testing.
 - [Doxygen API reference](https://pschatzmann.github.io/TinymDNS/annotated.html).
 - [`examples/`](examples/): `MDNS` sketch.
-
-## Limitations
-
-- IPv4 A records only.
-- Hostname only: no DNS-SD service or TXT records.
-- No conflict probing or renaming.
-- `resolve()` is blocking.
-
-## Testing
-
-Host-side tests use in-memory stubs and need no hardware:
-
-```bash
-cmake -S . -B build -DBUILD_TESTING=ON
-cmake --build build
-ctest --test-dir build --output-on-failure
-```
 
 ## License
 
