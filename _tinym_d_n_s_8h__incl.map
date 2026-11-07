@@ -1,0 +1,17 @@
+<map id="src/TinymDNS.h" name="src/TinymDNS.h">
+<area shape="rect" id="Node000001" title="Header&#45;only mDNS (RFC 6762) responder and resolver for Arduino." alt="" coords="134,5,259,33"/>
+<area shape="rect" id="Node000002" href="$_tinym_d_n_s_wire_8h.html" title="Shared mDNS (RFC 6762) wire&#45;format helpers for TinymDNS." alt="" coords="182,81,314,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,31,233,69,228,68,205,36"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,157,89,184"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="186,35,73,147,69,144,182,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="112,157,208,184"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="191,32,172,82,163,143,159,140,167,80,187,35"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="339,81,398,109"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="227,31,327,74,322,76,227,36"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="213,112,98,154,96,148,211,107"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="235,108,189,149,186,144,230,110"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="232,157,302,184"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="253,107,262,143,257,140,250,111"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="325,157,396,184"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="269,107,331,148,325,148,268,112"/>
+</map>

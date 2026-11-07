@@ -1,0 +1,7 @@
+<map id="TinymDNSWire" name="TinymDNSWire">
+<area shape="rect" id="Node000001" title="Stateless mDNS message encoder/decoder." alt="" coords="135,166,255,194"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,188,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,45,169,141,187,166,182,165,165,143,109,49"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="212,5,379,33"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="297,47,290,96,281,121,268,144,253,158,236,168,234,163,250,153,264,140,277,119,285,95,293,51"/>
+</map>

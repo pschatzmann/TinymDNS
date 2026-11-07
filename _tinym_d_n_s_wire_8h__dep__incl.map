@@ -1,0 +1,5 @@
+<map id="src/TinymDNSWire.h" name="src/TinymDNSWire.h">
+<area shape="rect" id="Node000001" title="Shared mDNS (RFC 6762) wire&#45;format helpers for TinymDNS." alt="" coords="5,5,161,33"/>
+<area shape="rect" id="Node000002" href="$_tinym_d_n_s_8h.html" title="Header&#45;only mDNS (RFC 6762) responder and resolver for Arduino." alt="" coords="20,81,146,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,47,86,81,80,80,81,51"/>
+</map>
