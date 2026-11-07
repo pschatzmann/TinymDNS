@@ -231,6 +231,20 @@ static void testResolve() {
   };
   CHECK(!m5.resolve("printer", ip));
   CHECK(m5.lastResult() == MDNSResult::Timeout);
+
+  // Captive mode: resolve() returns the local address without sending a query.
+  MockUDP udp6;
+  TinymDNS m6;
+  m6.begin(udp6, "esp32", IPAddress(192, 168, 1, 50));
+  size_t sentBefore = udp6.sent.size();
+  m6.setCaptive(true);
+  CHECK(m6.isCaptive());
+  CHECK(m6.resolve("anything", ip));
+  CHECK(ip == IPAddress(192, 168, 1, 50));
+  CHECK(m6.lastResult() == MDNSResult::Ok);
+  CHECK(udp6.sent.size() == sentBefore);
+  m6.setCaptive(false);
+  CHECK(!m6.isCaptive());
 }
 
 int main() {

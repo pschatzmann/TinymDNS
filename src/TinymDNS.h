@@ -128,6 +128,16 @@ class TinymDNS {
    */
   void setSubnetMask(IPAddress mask) { subnetMask_ = mask; }
 
+  /**
+   * @brief Enable or disable captive mode.
+   * While active, resolve() returns the local address without sending a query,
+   * so every name points to this device.
+   */
+  void setCaptive(bool active) { captive_ = active; }
+
+  /** @brief true while captive mode is active. */
+  bool isCaptive() const { return captive_; }
+
   /** @brief Interval between unsolicited announcements in loop(); 0 disables them. */
   void setAnnounceInterval(uint32_t intervalMs) { announceIntervalMs_ = intervalMs; }
 
@@ -156,6 +166,13 @@ class TinymDNS {
    */
   bool resolve(const char *hostname, IPAddress &result) {
     if (!started_ || !hostname) return fail(MDNSResult::NotConfigured);
+
+    if (captive_) {
+      result = address_;
+      lastTtl_ = ttl_;
+      lastResult_ = MDNSResult::Ok;
+      return true;
+    }
 
     char name[TINYMDNS_NAME_MAX];
     if (!TinymDNSWire::makeLocalName(hostname, name, sizeof(name))) return fail(MDNSResult::InvalidName);
@@ -291,6 +308,7 @@ class TinymDNS {
   char fqdn_[TINYMDNS_NAME_MAX] = {0};
   IPAddress address_;
   IPAddress subnetMask_;  // 0.0.0.0 = accept answers from any network
+  bool captive_ = false;  // resolve() returns the local address when true
   uint32_t ttl_ = TINYMDNS_DEFAULT_TTL;
   uint32_t timeoutMs_ = TINYMDNS_DEFAULT_TIMEOUT_MS;
   uint32_t announceIntervalMs_ = TINYMDNS_DEFAULT_ANNOUNCE_INTERVAL_MS;
